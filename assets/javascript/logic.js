@@ -9,22 +9,23 @@ $(document).ready(function()
         $(".topicButtons").empty();
         for (var i = 0; i < topics.length; i++)
         {
-            var newButton = $("<button class='buttons'>");
+            var newButton = $("<button class='btn btn-primary goButtons'>");
             newButton.attr("data-value", topics[i])
             newButton.text(topics[i]);
             $(".topicButtons").append(newButton);
         }    
     }
 
+    // make intial buttons on page load.
     makeButtons();
     
     // Click event to call Giphy with button data-value as search parameter. Filter out rated PG and lower. Then create 10 gifs with appropriate attributes.
-    $(".topicButtons").on("click", ".buttons", function()
+    $(".topicButtons").on("click", ".goButtons", function()
     {
         console.log(this);
         $(".content").empty();
         var buttonTopic = $(this).attr("data-value");
-        var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + buttonTopic + "&api_key=dc6zaTOxFJmzC&limit=10&rating=pg";
+        var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + buttonTopic + "&api_key=dc6zaTOxFJmzC&limit=9&rating=pg";
 
         $.ajax (
         {
@@ -39,14 +40,14 @@ $(document).ready(function()
             {
                 var newGifDiv = $("<div class='gifDiv'>");
                 var rating = results[i].rating;
-                var ratingPara = $("<p>").text("Rated " + rating);
+                var ratingPara = $("<p>").text("Rated: " + rating);
                 var gifImg = $("<img class='gif'>");
                 gifImg.attr("src", results[i].images.fixed_height_still.url);
                 gifImg.attr("data-state", "still");
                 gifImg.attr("data-still", results[i].images.fixed_height_still.url);
                 gifImg.attr("data-animated", results[i].images.fixed_height.url);
                 newGifDiv.append(gifImg);
-                newGifDiv.append(rating);
+                newGifDiv.append(ratingPara);
             
                 $(".content").append(newGifDiv);
             }

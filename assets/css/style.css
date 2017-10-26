@@ -2,3 +2,27 @@
     max-width: 80%;
     margin: 0 auto;
 }
+
+.goButtons {
+    margin-right: 10px;
+}
+
+.content, .textbox {
+    float: left;
+}
+
+.content {
+    width: 75%;
+    border: 2px solid white;
+}
+
+.gifDiv {
+    margin: 15px;
+    float: left;
+}
+
+p {
+    font: 18px bold;
+}
+
+
